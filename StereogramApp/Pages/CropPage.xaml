@@ -1,0 +1,24 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StereogramApp.CropPage"
+             Title="Crop Image">
+    <Grid>
+        <Image x:Name="OriginalImage" Aspect="AspectFit" />
+        <!-- Visual overlay to indicate cropping -->
+        <Grid>
+            <BoxView Color="Transparent" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView Grid.Column="1" Color="Red" />
+            <BoxView Grid.Column="3" Color="Red" />
+        </Grid>
+    </Grid>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Clicked="OnNextClicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

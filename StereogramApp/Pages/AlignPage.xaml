@@ -1,0 +1,12 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StereogramApp.AlignPage"
+             Title="Align Images">
+    <AbsoluteLayout>
+        <Image x:Name="BaseImage" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+        <Image x:Name="AlignImage" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Opacity="0.5" />
+    </AbsoluteLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Clicked="OnNextClicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

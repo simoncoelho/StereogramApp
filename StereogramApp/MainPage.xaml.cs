@@ -1,24 +1,42 @@
-﻿namespace StereogramApp;
+﻿using Microsoft.Maui.Controls;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
-public partial class MainPage : ContentPage
+namespace StereogramApp
 {
-	int count = 0;
+    public partial class MainPage : ContentPage
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+        private async void OnSelectPhotoClicked(object sender, EventArgs e)
+        {
+			var pickOptions = new PickOptions{
+				FileTypes = FilePickerFileType.Images,
+				PickerTitle = "Select a wigglegram image..."
+			};
+#if MACCATALYST
+			var result = await MacFilePicker.PickAsync(pickOptions);
+#else
+			var result = await FilePicker.Default.PickAsync(pickOptions);
+#endif
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+            if (result != null)
+            {
+                using var stream = await result.OpenReadAsync();
+                App.SelectedImageData = ReadFully(stream);
+                await Navigation.PushAsync(new CropPage());
+            }
+        }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        private byte[] ReadFully(Stream input)
+        {
+            using var ms = new MemoryStream();
+            input.CopyTo(ms);
+            return ms.ToArray();
+        }
+    }
 }
-

@@ -1,11 +1,21 @@
-﻿namespace StereogramApp;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using System;
 
-public partial class App : Application
+namespace StereogramApp // Ensure this matches your project's namespace
 {
-	public App()
-	{
-		InitializeComponent();
+    public partial class App : Application
+    {
+        public static byte[] SelectedImageData { get; set; }
+        public static byte[] Image1 { get; set; }
+        public static byte[] Image2 { get; set; }
+        public static byte[] Image3 { get; set; }
+        public static byte[] WigglegramData { get; set; }
 
-		MainPage = new AppShell();
-	}
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new NavigationPage(new MainPage());
+        }
+    }
 }
