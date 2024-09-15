@@ -3,7 +3,7 @@ using UniformTypeIdentifiers;
 
 #nullable enable
 
-namespace MyServices
+namespace StereogramApp
 {
   public partial class MacFilePicker
   {
